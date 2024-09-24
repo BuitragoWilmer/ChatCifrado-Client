@@ -1,0 +1,42 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ClientgRPC";
+
+package chat;
+service Chat {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+  rpc Send (SendMessageRequest) returns (SendMessageResponse);
+  rpc ContactsOnLine(ContactsOnLineRequest) returns (ContactsOnLineResponse);
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
+
+message SendMessageRequest {
+  string message = 1;
+  string cifrado = 2;
+  string sender = 3; 
+  string recipient = 4;
+}
+
+message SendMessageResponse {
+    bool success = 1;
+    string message_id = 2; 
+}
+
+message ContactsOnLineRequest {
+    string user = 1;   
+}
+
+message ContactsOnLineResponse {
+    bool Success = 1;
+    string Message = 2; 
+    repeated string ContactsOnLine = 3;
+}

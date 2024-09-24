@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ClientgRPC";
+
+package ClientsConexion;
+
+service ClientsConexion {
+    rpc loggear(stream LogInRequest) returns (stream LogInResponse);
+    rpc SendHeartbeat(Heartbeat) returns (HeartbeatResponse);
+}
+
+message LogInRequest {
+    string user = 1;   
+}
+
+message LogInResponse {
+    bool Success = 1;
+    string Message = 2; 
+}
+
+message Heartbeat {
+    string userId = 1; // Puede incluir información opcional como el ID del usuario
+}
+
+message HeartbeatResponse {
+    string message = 1; // Mensaje de confirmación
+    bool serverHealthy = 2; // Estado de salud del servidor
+}
